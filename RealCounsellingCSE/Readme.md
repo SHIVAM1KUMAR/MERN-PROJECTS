@@ -18,7 +18,8 @@ MongoDB for storing user data, enquiries, and testimonials.
 Routing: React Router for navigation across pages.
 
 
-git clone https://github.com/your-username/RealCounsellingApp.git
-cd RealCounsellingApp
-npm install
-npm start
+git clone https://github.com/your-username/RealCounsellingApp.git<br>
+cd RealCounsellingApp->
+npm install->
+npm start<br>
+Basically it is Design For The Students Counselling While They Are Growing up for their college
