@@ -24,7 +24,7 @@
 1. **Clone the Repository**:
    ```bash
    git clone https://github.com/<your-username>/DeveloperCorner.git
-   cd DeveloperCorner<br>
+   cd DeveloperCorner
    npm install->npm start
 
 
