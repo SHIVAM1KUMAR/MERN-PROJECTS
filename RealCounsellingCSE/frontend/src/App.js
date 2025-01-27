@@ -8,6 +8,7 @@ import About from './components/About';
 import RegisterPage from './components/RegisterPage';
 import SuccessStories from './components/SuccessStories';
 import EnquiryForm from './components/EnquiryForm';// Import EnquiryForm
+import ContactUs from './components/ContactUs';
 
 
 
@@ -26,11 +27,13 @@ const App = () => {
             <Route path="/about" element={<About />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/success" element={<SuccessStories />} />
+            <Route path="/contact" element={<ContactUs />} />
             <Route path="/enquiry" element={<EnquiryForm />}  /> {/* Enquiry form route */}
           </Routes>
         </div>
         <StateFilter/>
         <Footer />
+
       </div>
     </Router>
   );

@@ -11,7 +11,7 @@ const Header = () => {
 
   return (
     <header>
-      <div className="logo">RealCounselling CSE</div>
+      <div className="logo">Real-Counseller's</div>
       <nav>
         <ul className={`nav-links ${menuOpen ? 'open' : ''}`}>
           <li>

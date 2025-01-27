@@ -1,0 +1,177 @@
+/* Container styling */
+.form-container {
+    position: relative;
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 40px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(79, 14, 14, 0.2);
+    overflow: hidden;
+    z-index: 1; /* Ensures the form content stays above the animated text */
+}
+
+/* Animated background text */
+.animated-text {
+    font-size: 6rem; /* Larger text for more visibility */
+    font-weight: bold;
+    color: red; /* Red text color */
+    position: absolute;
+    white-space: nowrap;
+    z-index: -1; /* Ensure the text is behind the form */
+    animation: moveAround 12s infinite linear;
+    opacity: 0.1; /* Light opacity so it doesn't overpower the form */
+}
+
+/* Additional rotated text for visibility */
+.rotated-text {
+    font-size: 6rem;
+    font-weight: bold;
+    color: red; /* Red text color */
+    position: absolute;
+    white-space: nowrap;
+    z-index: -1;
+    animation: moveAroundReverse 15s infinite linear;
+    opacity: 0.1; /* Light opacity so it doesn't overpower the form */
+}
+
+/* Keyframes for moving text in all directions (random motion) */
+@keyframes moveAround {
+    0% {
+        top: -10%;
+        left: -20%;
+        opacity: 0.2;
+        transform: rotate(0deg);
+    }
+    25% {
+        top: 40%;
+        left: 80%;
+        opacity: 0.3;
+        transform: rotate(45deg);
+    }
+    50% {
+        top: 70%;
+        left: 50%;
+        opacity: 0.4;
+        transform: rotate(90deg);
+    }
+    75% {
+        top: 80%;
+        left: -30%;
+        opacity: 0.3;
+        transform: rotate(135deg);
+    }
+    100% {
+        top: -10%;
+        left: -50%;
+        opacity: 0.2;
+        transform: rotate(0deg);
+    }
+}
+
+/* Reverse animation for additional effect */
+@keyframes moveAroundReverse {
+    0% {
+        top: 50%;
+        left: 50%;
+        opacity: 0.2;
+        transform: rotate(0deg);
+    }
+    25% {
+        top: 20%;
+        left: -50%;
+        opacity: 0.3;
+        transform: rotate(-15deg);
+    }
+    50% {
+        top: -10%;
+        left: 10%;
+        opacity: 0.4;
+        transform: rotate(-45deg);
+    }
+    75% {
+        top: 60%;
+        left: 60%;
+        opacity: 0.3;
+        transform: rotate(30deg);
+    }
+    100% {
+        top: -10%;
+        left: -50%;
+        opacity: 0.2;
+        transform: rotate(0deg);
+    }
+}
+
+/* Form styling */
+form {
+    position: relative;
+    padding: 20px;
+    z-index: 1;
+}
+
+h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #2575fc;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* Input styling */
+label {
+    display: block;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+textarea {
+    height: 120px;
+}
+
+/* Button styling */
+button {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(90deg, #2575fc, #6a11cb);
+    color: white;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: linear-gradient(90deg, #6a11cb, #2575fc);
+}
+
+/* Thank You Message */
+.thank-you-message {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    background: #d4edda;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.thank-you-message h2 {
+    font-size: 2rem;
+    color: #28a745;
+}
+
+.thank-you-message p {
+    font-size: 1.2rem;
+    color: #155724;
+}

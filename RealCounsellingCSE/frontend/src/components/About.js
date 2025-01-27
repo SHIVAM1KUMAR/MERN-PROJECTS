@@ -5,34 +5,60 @@ const About = () => {
   return (
     <div className="aboutpage-container">
       <header className="about-hero-section">
-        <h1 className="about-hero-title">About RealCounselling CSE</h1>
+        <h1 className="about-hero-title">About RealCounselling - Your Path to a Successful Engineering Career</h1>
+        <p className="hero-subtitle">Empowering students to achieve their dreams across all engineering disciplines</p>
       </header>
 
       <section className="about-content-section">
-        <h2>Why We Started</h2>
+        <h2>Why Choose RealCounselling?</h2>
         <p>
-          At RealCounselling CSE, we believe in shaping the future of students by helping them discover their perfect Computer Science college.
-          Our mission is to provide expert guidance and tailored solutions for students aiming to make informed decisions about their education.
+          At RealCounselling, we specialize in providing expert guidance for students aiming to pursue careers in various engineering fields. 
+          Whether you're interested in Computer Science, Mechanical, Civil, Electrical, or any other engineering course, we’re here to ensure you make informed decisions and achieve your academic and career goals.
         </p>
 
-        <p>
-          The journey to finding the right college can be overwhelming, and that's where we come in. With years of experience in counseling and 
-          college admissions, we provide a roadmap to success by understanding each student's unique aspirations and guiding them towards institutions 
-          that align with their dreams and goals.
-        </p>
+        <h2>Our Unique Features</h2>
+        <div className="feature-list">
+          <div className="feature">
+            <h3>Exclusive Scholarships</h3>
+            <p>
+              We offer exclusive scholarships for deserving students across all engineering fields. When you apply through RealCounselling, you open the doors to financial support to pursue your engineering dreams.
+            </p>
+          </div>
+
+          <div className="feature">
+            <h3>Admission Tests Tailored to You</h3>
+            <p>
+              Choosing the right engineering college is vital. We offer personalized admission tests that help you find the right fit based on your interests, skills, and aspirations. This ensures you make the best decision for your future.
+            </p>
+          </div>
+
+          <div className="feature">
+            <h3>Ongoing Support Throughout Your Journey</h3>
+            <p>
+              Our support doesn't end once you're admitted. We provide continuous guidance, academic support, career counseling, and assistance throughout your engineering journey, ensuring you stay on track to success.
+            </p>
+          </div>
+
+          <div className="feature">
+            <h3>Exclusive College Partnerships</h3>
+            <p>
+              RealCounselling partners with top-tier engineering colleges across the country. With our trusted network, students gain access to exclusive opportunities like internships, job fairs, and more, connecting you to your dream career.
+            </p>
+          </div>
+        </div>
 
         <h2>Our Vision</h2>
         <p>
-          Our vision is to bridge the gap between students and their ideal academic institution. We are committed to offering unbiased, personalized, 
-          and effective counseling services, empowering students to take the right steps towards building a successful career in the ever-evolving 
-          world of Computer Science.
+          Our vision is to empower students to take control of their future by offering personalized, unbiased, and forward-thinking counseling services. 
+          We aim to help students make the right choices for a successful career in the ever-evolving world of engineering.
         </p>
 
-        <h2>Our Values</h2>
+        <h2>Our Core Values</h2>
         <ul>
-          <li>Integrity: We believe in transparency and honesty in all our services.</li>
-          <li>Innovation: We constantly evolve with the changing landscape of education.</li>
-          <li>Student-Centric: Our focus is always on the needs and goals of the students.</li>
+          <li><strong>Integrity</strong>: We stand for transparency and honesty in every step of our services.</li>
+          <li><strong>Innovation</strong>: We constantly evolve to meet the changing needs of education and careers in engineering.</li>
+          <li><strong>Student-Centric</strong>: We prioritize the needs and dreams of our students in every service we offer.</li>
+          <li><strong>Excellence</strong>: We provide exceptional support and resources to ensure our students' success.</li>
         </ul>
       </section>
     </div>

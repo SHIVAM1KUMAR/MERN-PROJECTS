@@ -1,7 +1,45 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './SuccessStoryPage.css'; // Importing specific CSS for Success Story Page
 
 const SuccessStories = () => {
+  // Load testimonials from localStorage or use default ones
+  const getStoredTestimonials = () => {
+    const storedTestimonials = localStorage.getItem('testimonials');
+    return storedTestimonials ? JSON.parse(storedTestimonials) : [
+      {
+        name: 'Raj',
+        story: 'With the help of RealCounselling, I found the perfect college for my CS career!',
+        rating: 5
+      },
+      {
+        name: 'Priya',
+        story: 'I was able to make an informed decision with their guidance.',
+        rating: 4
+      },
+      {
+        name: 'Arvind',
+        story: 'Choosing the right college became easy with their support!',
+        rating: 5
+      }
+    ];
+  };
+
+  const [testimonials, setTestimonials] = useState(getStoredTestimonials);
+  const [newTestimonial, setNewTestimonial] = useState({ name: '', story: '', rating: '' });
+
+  // Save testimonials to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem('testimonials', JSON.stringify(testimonials));
+  }, [testimonials]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (newTestimonial.name && newTestimonial.story && newTestimonial.rating) {
+      setTestimonials([...testimonials, newTestimonial]);
+      setNewTestimonial({ name: '', story: '', rating: '' });
+    }
+  };
+
   return (
     <div className="success-stories-container">
       <header className="success-hero-section">
@@ -9,61 +47,46 @@ const SuccessStories = () => {
       </header>
 
       <section className="success-content-section">
-        <h2>The Journey of Freshers: From Struggles to Success</h2>
-        <p>
-          When we first started, we were just like you — unsure, anxious, and overwhelmed with the college admission process. Choosing the right 
-          college is a big decision, and we faced our own challenges in navigating this complex journey. The stories you are about to read reflect 
-          the journey of students who, like us, once stood at the crossroads of uncertainty, only to find a path that led to success.
-        </p>
-
-        <p>
-          But the good news is, you don’t have to go through it alone. Our expert team at RealCounselling CSE has been there every step of the way for 
-          students, guiding them with personalized advice, handpicking the best college options, and empowering them to make informed choices. 
-          Let’s take a look at some of their inspiring stories.
-        </p>
-
         <h2>Success Stories</h2>
-        <div className="story">
-          <h3>Story 1: A Journey from Confusion to Clarity</h3>
-          <p>
-            Meet Raj, a bright student from a small town who had dreams of studying Computer Science at a top-tier university. Raj felt lost in the 
-            overwhelming sea of colleges, and wasn't sure which one would be the best fit for his career aspirations. With our counseling services, 
-            Raj not only found a college that aligned perfectly with his goals, but also gained insights into scholarship opportunities, student life, 
-            and career prospects. Today, Raj is thriving in his CS program and feels confident about his future.
-          </p>
+        <div className="stories-grid">
+          {testimonials.map((testimonial, index) => (
+            <div key={index} className="story-card">
+              <h3>{testimonial.name}</h3>
+              <p>{testimonial.story}</p>
+              <div className="rating">Rating: {'⭐'.repeat(testimonial.rating)}</div>
+            </div>
+          ))}
         </div>
 
-        <div className="story">
-          <h3>Story 2: From Struggling with Choices to Making Informed Decisions</h3>
-          <p>
-            Priya was a high achiever in high school, but when it came time to choose a college, she was overwhelmed by the sheer number of options. 
-            With conflicting advice from well-meaning relatives and friends, Priya found herself stuck in indecision. Through our tailored counseling 
-            sessions, we helped Priya understand her strengths, interests, and long-term goals, ultimately guiding her to the perfect college. 
-            Priya is now excelling in her studies and looks forward to a promising career in the tech industry.
-          </p>
-        </div>
-
-        <div className="story">
-          <h3>Story 3: Overcoming the Fear of Missing Out (FOMO)</h3>
-          <p>
-            When Arvind first started his college search, he was constantly worried that he might miss out on the "best" colleges. He kept comparing 
-            himself to others, unsure whether he was making the right choice. With our counseling approach, Arvind was able to embrace his individuality 
-            and choose a college that met both his academic and personal goals. Today, Arvind is proud of the choice he made and is thriving in his new 
-            academic environment.
-          </p>
-        </div>
-
-        <h2>Why Choose RealCounselling CSE?</h2>
-        <p>
-          These are just a few of the success stories we’ve helped write. At RealCounselling CSE, we understand that every student’s journey is unique, 
-          and we are committed to supporting you at every step. We offer personalized guidance, in-depth college recommendations, and help you overcome 
-          the common challenges faced during the admission process. 
-        </p>
-        
-        <p>
-          You don’t have to navigate the world of college admissions alone. Let us help you take control of your future, just like we’ve helped countless 
-          other students achieve their dreams. Join RealCounselling CSE and take the first step toward your success story today!
-        </p>
+        <h2>Share Your Experience</h2>
+        <form className="testimonial-form" onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Your Name"
+            value={newTestimonial.name}
+            onChange={(e) => setNewTestimonial({ ...newTestimonial, name: e.target.value })}
+            required
+          />
+          <textarea
+            placeholder="Your Story"
+            value={newTestimonial.story}
+            onChange={(e) => setNewTestimonial({ ...newTestimonial, story: e.target.value })}
+            required
+          ></textarea>
+          <select
+            value={newTestimonial.rating}
+            onChange={(e) => setNewTestimonial({ ...newTestimonial, rating: e.target.value })}
+            required
+          >
+            <option value="">Select Rating</option>
+            <option value="5">5 - Excellent</option>
+            <option value="4">4 - Good</option>
+            <option value="3">3 - Average</option>
+            <option value="2">2 - Below Average</option>
+            <option value="1">1 - Poor</option>
+          </select>
+          <button type="submit" className="submit-btn">Submit</button>
+        </form>
       </section>
     </div>
   );

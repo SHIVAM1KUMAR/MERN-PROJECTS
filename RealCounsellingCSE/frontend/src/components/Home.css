@@ -3,9 +3,10 @@ body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
   padding: 0;
-  background: #f7f9fc;
-  color: #333;
+  background: linear-gradient(120deg, #1a1a2e, #16213e);
+  color: #ffffff;
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 a {
@@ -15,130 +16,151 @@ a {
 
 /* Hero Section */
 .hero-section {
-  background: linear-gradient(135deg, #6a11cb, #2575fc);
-  color: white;
-  padding: 80px 20px;
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  color: #fff;
+  padding: 100px 20px;
   text-align: center;
   position: relative;
   overflow: hidden;
-}
-
-.hero-section::before {
-  content: '';
-  position: absolute;
-  top: -50px;
-  left: -50px;
-  width: 300px;
-  height: 300px;
-  background: rgba(255, 255, 255, 0.2);
-  filter: blur(100px);
-  border-radius: 50%;
-  animation: float 6s infinite;
-}
-
-.hero-section::after {
-  content: '';
-  position: absolute;
-  bottom: -50px;
-  right: -50px;
-  width: 200px;
-  height: 200px;
-  background: rgba(255, 255, 255, 0.1);
-  filter: blur(80px);
-  border-radius: 50%;
-  animation: float 8s infinite reverse;
+  border-bottom: 5px solid #ff6f61;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .hero-title {
-  font-size: 4rem;
-  margin: 20px 0;
-  letter-spacing: 1px;
+  font-size: 4.5rem;
+  letter-spacing: 2px;
+  font-weight: bold;
   text-transform: uppercase;
+  background: linear-gradient(45deg, #ff6f61, #ff9a8b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   animation: fadeInDown 1.5s ease-out;
 }
 
 .hero-subtitle {
-  font-size: 1.6rem;
-  margin-top: 10px;
+  font-size: 1.8rem;
   font-weight: 300;
   opacity: 0.9;
+  margin-top: 10px;
   animation: fadeInUp 1.5s ease-out;
 }
 
+
+
+
 /* Content Section */
 .content-section {
-  max-width: 900px;
-  margin: 50px auto;
-  padding: 30px;
-  background: #ffffff;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  border-radius: 15px;
-  text-align: justify;
-  position: relative;
-  overflow: hidden;
-  animation: fadeIn 1.5s ease-out;
-}
-
-.content-section h2 {
-  font-size: 2.5rem;
-  color: #2575fc;
   text-align: center;
-  margin-bottom: 25px;
-  text-transform: uppercase;
-  position: relative;
+  padding: 60px;
+  background: linear-gradient(to right, #ff6f61, #ff9a8b);
+  color: #fff;
+  border-radius: 30px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+  margin: 50px 20px;
+  transition: all 0.3s ease-in-out;
 }
 
-.content-section h2::after {
-  content: '';
-  display: block;
-  width: 80px;
-  height: 3px;
-  background: linear-gradient(135deg, #6a11cb, #2575fc);
-  margin: 10px auto 0;
-  border-radius: 5px;
+.content-section:hover {
+  transform: scale(1.02);
 }
 
-.content-section p {
-  font-size: 1.2rem;
-  color: #555;
-  line-height: 1.8;
+h2 {
+  font-size: 2.8rem;
   margin-bottom: 20px;
-  text-indent: 20px;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
-.content-section p:hover {
-  transform: scale(1.03);
-  opacity: 0.9;
+p {
+  font-size: 1.3rem;
+  line-height: 2;
+}
+
+/* Features Section */
+.feature {
+  margin: 40px 0;
+  padding: 25px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease-in-out;
+}
+
+.feature:hover {
+  transform: translateY(-10px);
+}
+
+.feature h3 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: #ffeaa7;
+}
+
+.closing-statement {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #ffeb3b;
+  margin-top: 50px;
 }
 
 /* Footer */
 .footer {
-  margin-top: 50px;
-  background: #333;
-  color: white;
-  padding: 15px 0;
+  background: #0f0c29;
+  color: #ff9a8b;
+  padding: 20px 0;
   text-align: center;
-  font-size: 1rem;
+  font-size: 1.2rem;
+  border-top: 5px solid #ff6f61;
   position: relative;
+  font-weight: bold; /* Make text bold */
+  animation: fadeIn 2s ease-out, pulse 3s infinite; /* Apply both fadeIn and pulse animation */
 }
 
 .footer p {
   margin: 0;
-  animation: fadeIn 2s ease-out;
+  animation: fadeIn 2s ease-out, bounce 2s ease-in-out infinite; /* Add bounce effect */
+  text-shadow: 0 0 10px rgba(255, 154, 139, 0.7); /* Add a glowing effect */
 }
 
 .footer::before {
   content: '';
   position: absolute;
-  top: -20px;
+  top: -15px;
   left: 50%;
   transform: translateX(-50%);
-  width: 60px;
+  width: 80px;
   height: 5px;
-  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  background: linear-gradient(135deg, #ff6f61, #ff9a8b);
   border-radius: 50px;
 }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1); /* Slight scaling effect */
+  }
+}
+
 
 /* Keyframes for Animations */
 @keyframes fadeIn {
@@ -171,15 +193,5 @@ a {
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-20px);
   }
 }

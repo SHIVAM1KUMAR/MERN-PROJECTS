@@ -1,120 +1,146 @@
-/* Register Page Styles */
-
-/* Register Page Container */
+/* General Styling */
 .registerpage-container {
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    padding: 0;
-    background: #f7f9fc;
-    color: #333;
-  }
-  
-  /* Hero Section */
-  .register-hero-section {
-    background: linear-gradient(135deg, #6a11cb, #2575fc);
-    color: white;
-    padding: 80px 20px;
-    text-align: center;
-    position: relative;
-  }
-  
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to right, #4facfe, #00f2fe);
+  min-height: 100vh;
+}
+
+/* Hero Section */
+.register-hero-section {
+  text-align: center;
+  padding: 80px 20px;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+}
+
+.register-hero-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.register-hero-subtitle {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+/* Content Section */
+.register-content-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Section Title */
+.section-title {
+  font-size: 2.2rem;
+  color: #007bff;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.section-description {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #555;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Highlighted Text */
+.highlight {
+  color: #ff6f61;
+  font-weight: bold;
+}
+
+/* Course List */
+.course-list {
+  list-style: none;
+  padding: 0;
+  text-align: center;
+}
+
+.course-list li {
+  font-size: 1.3rem;
+  margin: 10px 0;
+  color: #333;
+}
+
+/* Assistance Section */
+.assist-container {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.assist-card {
+  background: #f0f0f0;
+  border-left: 5px solid #007bff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 30%;
+  min-width: 280px;
+  transition: all 0.3s ease-in-out;
+}
+
+.assist-card:hover {
+  transform: translateY(-5px);
+  background: #e0f7fa;
+}
+
+.assist-card h3 {
+  font-size: 1.5rem;
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+.assist-card p {
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Registration Button */
+.register-btn {
+  display: block;
+  width: fit-content;
+  margin: 20px auto;
+  padding: 15px 30px;
+  font-size: 1.3rem;
+  text-align: center;
+  background: #ff6f61;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  text-decoration: none;
+  box-shadow: 0 8px 20px rgba(255, 111, 97, 0.5);
+  transition: all 0.3s ease;
+}
+
+.register-btn:hover {
+  background: #e64a45;
+  transform: translateY(-3px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
   .register-hero-title {
-    font-size: 4rem;
-    margin: 20px 0;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    animation: fadeInDown 1.5s ease-out;
-  }
-  
-  /* Content Section */
-  .register-content-section {
-    max-width: 900px;
-    margin: 50px auto;
-    padding: 30px;
-    background: #ffffff;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    border-radius: 15px;
-    text-align: justify;
-    animation: fadeIn 1.5s ease-out;
-  }
-  
-  .register-content-section h2 {
     font-size: 2.5rem;
-    color: #2575fc;
-    text-align: center;
-    margin-bottom: 25px;
-    text-transform: uppercase;
   }
-  
-  .register-content-section h2::after {
-    content: '';
-    display: block;
-    width: 80px;
-    height: 3px;
-    background: linear-gradient(135deg, #6a11cb, #2575fc);
-    margin: 10px auto 0;
-    border-radius: 5px;
-  }
-  
-  .register-content-section p {
+
+  .register-hero-subtitle {
     font-size: 1.2rem;
-    color: #555;
-    line-height: 1.8;
-    margin-bottom: 20px;
-    text-indent: 20px;
   }
-  
-  .register-content-section ul {
-    list-style: none;
-    padding: 0;
+
+  .assist-card {
+    width: 100%;
   }
-  
-  .register-content-section ul li {
-    font-size: 1.1rem;
-    margin-bottom: 10px;
-    color: #555;
-    text-align: left;
-  }
-  
-  /* Registration Button */
-  .register-btn {
-    display: inline-block;
-    background-color: #2575fc;
-    color: white;
-    padding: 12px 30px;
-    text-decoration: none;
-    border-radius: 50px;
-    font-size: 1.2rem;
-    margin-top: 30px;
-    text-align: center;
-    transition: background-color 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  }
-  
-  .register-btn:hover {
-    background-color: #6a11cb;
-  }
-  
-  /* Keyframes for Animations */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  @keyframes fadeInDown {
-    from {
-      opacity: 0;
-      transform: translateY(-50px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
+}

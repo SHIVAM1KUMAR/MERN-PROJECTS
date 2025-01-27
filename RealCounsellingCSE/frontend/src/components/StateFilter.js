@@ -148,7 +148,7 @@ const StateFilter = () => {
 
   return (
     <div className="state-filter">
-      <h2>Filter CSE Colleges by State</h2>
+      <h2>Filter Colleges by State</h2>
       <label htmlFor="state">Select State: </label>
       <select id="state" value={selectedState} onChange={handleStateChange}>
         <option value="">--Select a State--</option>
