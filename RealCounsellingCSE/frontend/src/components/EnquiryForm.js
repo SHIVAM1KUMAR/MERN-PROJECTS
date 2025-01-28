@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './EnquiryForm.css'; // Import the CSS file for styling
 
 const EnquiryForm = () => {
   const [formData, setFormData] = useState({
@@ -8,7 +7,7 @@ const EnquiryForm = () => {
     message: '',
   });
 
-  const [isSubmitted, setIsSubmitted] = useState(false); // Track form submission
+  const [showThankYou, setShowThankYou] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -24,8 +23,9 @@ const EnquiryForm = () => {
       });
 
       if (response.ok) {
-        setIsSubmitted(true);
+        setShowThankYou(true); // Show thank you modal
         setFormData({ name: '', email: '', message: '' });
+        setTimeout(() => setShowThankYou(false), 3000); // Hide modal after 3 seconds
       } else {
         alert('Failed to submit enquiry.');
       }
@@ -35,48 +35,52 @@ const EnquiryForm = () => {
   };
 
   return (
-    <div className="form-container">
-      {/* Animated background text */}
-      <div className="animated-text">RealCounsellor's</div>
-      <div className="animated-text rotated-text">RealCounsellor's</div>
-      {!isSubmitted ? (
-        <form onSubmit={handleSubmit}>
-          <h2>Enquiry Form</h2>
-          <label>
-            Name:
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
-          </label>
-          <label>
-            Email:
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-          </label>
-          <label>
-            Message:
-            <textarea
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              required
-            ></textarea>
-          </label>
-          <button type="submit">Submit</button>
-        </form>
-      ) : (
-        <div className="thank-you-message">
-          <h2>Thank you for your enquiry!</h2>
-          <p>We will get back to you shortly.</p>
+    <div className="enquiry-form-container">
+      <form className="enquiry-form" onSubmit={handleSubmit}>
+        <h2>Contact Us</h2>
+        <label>
+          <span>Name:</span>
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            placeholder="Your Name"
+            required
+          />
+        </label>
+        <label>
+          <span>Email:</span>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="Your Email"
+            required
+          />
+        </label>
+        <label>
+          <span>Message:</span>
+          <textarea
+            name="message"
+            value={formData.message}
+            onChange={handleChange}
+            placeholder="Write your message..."
+            required
+          ></textarea>
+        </label>
+        <button type="submit" className="submit-btn">
+          Submit
+        </button>
+      </form>
+
+      {showThankYou && (
+        <div className="thank-you-modal">
+          <div className="thank-you-message">
+            <h3>Thank You!</h3>
+            <p>Your enquiry has been submitted successfully.</p>
+          </div>
         </div>
       )}
     </div>

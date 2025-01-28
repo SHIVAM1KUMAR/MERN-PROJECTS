@@ -5,72 +5,48 @@ const HomePage = () => {
   return (
     <div className="homepage-container">
       <header className="hero-section">
-        <h1 className="hero-title">Welcome to Real-Counselling</h1>
+        <h1 className="hero-title">Welcome To Real_ERA </h1>
         <p className="hero-subtitle">
           Your journey to academic excellence starts here. Let us guide you toward a brighter future.
         </p>
-       
-
-
-
-
-
       </header>
 
       <section className="content-section">
         <h2>Why People Choose Us</h2>
-
         <p>
-          At <strong>RealCounselling</strong>, we go beyond just providing guidance – we pave the way for your future 
-          with tailored solutions that cater to your unique ambitions and dreams. Our platform bridges the gap 
-          between your potential and the right opportunities, making your journey towards academic and career 
-          success seamless and rewarding.
+          At RealCounselling CSE, we empower students by offering a personalized approach to career guidance. 
+          With access to detailed insights about colleges, courses, and opportunities, our platform makes 
+          navigating the world of higher education effortless and inspiring.
         </p>
 
-        <div className="feature">
-          <h3>🚀 Expert Guidance</h3>
-          <p>
-            Our team of seasoned professionals offers in-depth insights and personalized advice 
-            based on years of experience in career counseling and academic planning. 
-            Whether you're exploring engineering, management, or creative fields, we have you covered.
-          </p>
-        </div>
+        <p>
+          <strong>Exceptional Expertise:</strong> Our team comprises seasoned professionals with years of experience in career counseling 
+          and academic planning. Whether you’re looking to excel in engineering, programming, or tech innovations, 
+          our advice is rooted in real-world relevance.
+        </p>
 
-        <div className="feature">
-          <h3>🌐 Comprehensive Resources</h3>
-          <p>
-            Gain access to an extensive database of top universities, trending courses, and future career 
-            trends. We help you stay ahead in the competitive landscape with well-researched information 
-            and the latest updates in education.
-          </p>
-        </div>
+        <p>
+          <strong>Comprehensive Support:</strong> From identifying the best institutions to helping with admission processes, 
+          we ensure every step is smooth and stress-free. Our commitment goes beyond just consultation—we walk with you until you succeed.
+        </p>
 
-        <div className="feature">
-          <h3>🤝 Personalized Approach</h3>
-          <p>
-            Every student is unique, and so is our approach. Our tailored solutions ensure that your academic 
-            and career goals are aligned perfectly with your strengths and aspirations.
-          </p>
-        </div>
+        <p>
+          <strong>Tailored Solutions:</strong> No two journeys are the same. We provide solutions customized to your aspirations, 
+          ensuring you make informed decisions that pave the way for your success in this competitive world.
+        </p>
 
-        <div className="feature">
-          <h3>📈 Proven Success</h3>
-          <p>
-            Thousands of students have already achieved their dreams with RealCounselling. 
-            Our track record of successful admissions and career transformations stands as a testament 
-            to our commitment and excellence.
-          </p>
-        </div>
-
-        <p className="closing-statement">
-          Choosing <strong>RealCounselling</strong> means choosing a brighter future. Let us be your trusted partner 
-          in navigating the complexities of career decisions. Together, we'll achieve success!
+        <p>
+          Choosing RealCounselling CSE isn’t just about picking a service; it’s about selecting a trusted partner who puts your ambitions first. 
+          Join the thousands of students who have unlocked their potential with us. Together, let’s shape a brighter tomorrow.
         </p>
       </section>
 
       <footer className="footer">
-        <p>Empowering dreams, one step at a time.</p>
-      </footer>
+  <div className="scrolling-text">
+    Empowering dreams, one step at a time.
+  </div>
+</footer>
+
     </div>
   );
 };

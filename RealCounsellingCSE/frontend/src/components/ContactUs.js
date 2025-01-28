@@ -27,7 +27,7 @@ const teamMembers = [
     bio: 'Yashwant has a keen eye for design and creates intuitive user experiences.',
   },
   {
-    name: 'Kanak Gupya',
+    name: 'Kanak Gupta',
     email: 'kanak@example.com',
     phone: '+91 784516XXXX',
     photo: 'https://randomuser.me/api/portraits/women/4.jpg',

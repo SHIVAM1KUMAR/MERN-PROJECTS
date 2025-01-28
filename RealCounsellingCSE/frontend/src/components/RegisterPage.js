@@ -5,71 +5,42 @@ const RegisterPage = () => {
   return (
     <div className="registerpage-container">
       <header className="register-hero-section">
-        <h1 className="register-hero-title">Book Your Engineering Counselling</h1>
-        <p className="register-hero-subtitle">
-          Get expert guidance to shape your future in engineering.
-        </p>
+        <h1 className="register-hero-title">Book Your Slot</h1>
       </header>
 
       <section className="register-content-section">
-        <div className="content-wrapper">
-          <h2 className="section-title">Why Register with Us?</h2>
-          <p className="section-description">
-            Choosing the right engineering college is a crucial decision that can define your career.
-            At <span className="highlight">RealCounselling</span>, we are committed to guiding students through every step 
-            of their journey across various engineering disciplines, ensuring they make an informed decision with confidence.
-          </p>
-          <p className="section-description">
-            Our expert counseling services provide you with comprehensive insights into top engineering institutions, 
-            admission processes, and career opportunities.
-          </p>
-        </div>
+        <h2>Why Register?</h2>
+        <p>
+          Choosing the right college can be a life-changing decision. At RealCounselling CSE, we are dedicated to helping students find the perfect fit
+          for their Computer Science education. Our personalized counseling services are designed to guide you through every step of the application 
+          process, ensuring you make an informed and confident decision.
+        </p>
 
-        <div className="content-wrapper">
-          <h2 className="section-title">Courses We Cover</h2>
-          <ul className="course-list">
-            <li>Computer Science Engineering (CSE)</li>
-            <li>Mechanical Engineering (ME)</li>
-            <li>Electrical and Electronics Engineering (EEE)</li>
-            <li>Civil Engineering (CE)</li>
-            <li>Electronics and Communication Engineering (ECE)</li>
-            <li>Information Technology (IT)</li>
-          </ul>
-        </div>
+        <p>
+          By registering, you'll gain access to expert advice, curated college options, and a roadmap to success in your academic and professional journey.
+        </p>
 
-        <div className="content-wrapper">
-          <h2 className="section-title">How We Assist You</h2>
-          <div className="assist-container">
-            <div className="assist-card">
-              <h3>Personalized Guidance</h3>
-              <p>We evaluate your interests and academic background to suggest the best engineering programs tailored to you.</p>
-            </div>
-            <div className="assist-card">
-              <h3>College Selection</h3>
-              <p>Our experts provide curated lists of top colleges that align with your career goals and preferences.</p>
-            </div>
-            <div className="assist-card">
-              <h3>Admission Assistance</h3>
-              <p>Step-by-step support throughout the application process, including document preparation and deadlines.</p>
-            </div>
-          </div>
-        </div>
+        <h2>How We Help You</h2>
+        <ul>
+          <li>Personalized counseling based on your academic interests and career goals.</li>
+          <li>Guidance on college selection, application, and admissions.</li>
+          <li>Support throughout your entire journey, from registration to graduation.</li>
+        </ul>
 
-        <div className="content-wrapper">
-          <h2 className="section-title">Register Now</h2>
-          <p className="section-description">
-            Take the first step towards your dream engineering career by filling out our registration form. Our team will 
-            connect with you to provide personalized counseling and expert advice.
-          </p>
-          <a 
-            href="https://docs.google.com/forms/d/1ZPcprgmUf27lMjo79fDJaI7nilm4ftLxZXVIZZLQqJY/edit" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="register-btn"
-          >
-            Register Now
-          </a>
-        </div>
+        <h2>Registration Form</h2>
+        <p>
+          Fill out the form below to register for our counseling services. Once you register, our team will reach out to you with the next steps. 
+          We're excited to help you take the first step toward a successful future in Computer Science!
+        </p>
+        
+        <a 
+          href="https://your-google-form-url" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="register-btn"
+        >
+          Go to Registration Form
+        </a>
       </section>
     </div>
   );

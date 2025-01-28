@@ -1,28 +1,32 @@
-// routes/enquiryRoutes.js
 const express = require('express');
+const Enquiry = require('../models/Enquiry'); // Import the Enquiry model
+
 const router = express.Router();
-const Enquiry = require('../models/Enquiry'); // Assuming you have this model
 
-// POST route to save enquiry
-router.post('/', async (req, res) => {
-  const { name, email, message } = req.body;
-  const newEnquiry = new Enquiry({ name, email, message });
-
+// Route to create a new enquiry
+router.post('/enquiries', async (req, res) => {
   try {
+    const { name, email, message } = req.body;
+    
+    // Create a new enquiry
+    const newEnquiry = new Enquiry({ name, email, message });
     await newEnquiry.save();
-    res.status(201).json({ message: 'Enquiry submitted successfully!' });
-  } catch (err) {
-    res.status(400).json({ message: 'Error submitting enquiry.', error: err.message });
+    
+    res.status(201).json({ message: 'Enquiry created successfully' });
+  } catch (error) {
+    console.error('Error creating enquiry:', error);
+    res.status(500).json({ message: 'Failed to create enquiry' });
   }
 });
 
-// GET route to retrieve all enquiries
-router.get('/', async (req, res) => {
+// Route to get all enquiries
+router.get('/enquiries', async (req, res) => {
   try {
     const enquiries = await Enquiry.find();
     res.status(200).json(enquiries);
-  } catch (err) {
-    res.status(400).json({ message: 'Error retrieving enquiries.', error: err.message });
+  } catch (error) {
+    console.error('Error retrieving enquiries:', error);
+    res.status(500).json({ message: 'Failed to retrieve enquiries' });
   }
 });
 

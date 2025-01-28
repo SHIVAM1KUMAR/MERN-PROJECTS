@@ -20,6 +20,7 @@ const App = () => {
     <Router>
       <div className="app-container">
         <Header />
+       
         {/* <StateFilter/> */}
         <div className="main-content">
           <Routes>
@@ -28,10 +29,14 @@ const App = () => {
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/success" element={<SuccessStories />} />
             <Route path="/contact" element={<ContactUs />} />
-            <Route path="/enquiry" element={<EnquiryForm />}  /> {/* Enquiry form route */}
+            <Route path="/enquiry" element={<EnquiryForm />}  /> 
+            {/* Enquiry form route */}
+            
           </Routes>
+          <StateFilter/>
         </div>
-        <StateFilter/>
+         
+        
         <Footer />
 
       </div>
