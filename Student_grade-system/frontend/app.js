@@ -33,7 +33,25 @@ async function searchStudent() {
 
   if (res.ok) {
     const data = await res.json();
-    resultDiv.innerText = `${data.name}'s average is ${data.average}. Result: ${data.result}`;
+
+    // Safety check if grades exist
+    if (!data.grades) {
+      resultDiv.innerText = "Student data incomplete.";
+      return;
+    }
+
+    resultDiv.innerHTML = `
+      <strong>Name:</strong> ${data.name}<br/>
+      <strong>Roll Number:</strong> ${data.rollNumber}<br/>
+      <strong>Subject Marks:</strong><br/>
+      Hindi: ${data.grades.hindi}<br/>
+      English: ${data.grades.english}<br/>
+      Math: ${data.grades.math}<br/>
+      Science: ${data.grades.science}<br/>
+      SST: ${data.grades.sst}<br/>
+      <strong>Average:</strong> ${data.average}<br/>
+      <strong>Result:</strong> ${data.result}
+    `;
   } else {
     resultDiv.innerText = "Student not found.";
   }
