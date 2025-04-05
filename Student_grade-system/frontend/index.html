@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Grade Management System</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Student Grade Management</h1>
+
+    <form id="addStudentForm">
+      <h2>Add Student</h2>
+      <input type="text" id="name" placeholder="Name" required />
+      <input type="number" id="rollNumber" placeholder="Roll Number" required />
+      <input type="number" id="hindi" placeholder="Hindi Marks" required />
+      <input type="number" id="english" placeholder="English Marks" required />
+      <input type="number" id="math" placeholder="Math Marks" required />
+      <input type="number" id="science" placeholder="Science Marks" required />
+      <input type="number" id="sst" placeholder="SST Marks" required />
+      <button type="submit">Add Student</button>
+    </form>
+
+    <hr />
+
+    <div>
+      <h2>Check Result by Name</h2>
+      <input type="text" id="searchName" placeholder="Enter Name" />
+      <button onclick="searchStudent()">Search</button>
+      <p id="searchResult"></p>
+    </div>
+
+    <hr />
+
+    <div>
+      <h2>Remove Student</h2>
+      <input type="number" id="removeRoll" placeholder="Enter Roll Number" />
+      <button onclick="removeStudent()">Remove</button>
+      <p id="removeResult"></p>
+    </div>
+
+    <hr />
+
+    <div>
+      <h2>Top Scorer</h2>
+      <button onclick="getTopper()">Get Highest Average</button>
+      <p id="topperResult"></p>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
