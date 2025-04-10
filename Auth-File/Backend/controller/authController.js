@@ -5,14 +5,14 @@ const sendEmail = require("../utils/email");
 const generateOtp = require("../utils/generateOtp");
 const jwt = require("jsonwebtoken");
 
-// Generate JWT\
- const signToken = (id) => {
+// Create JWT
+const signToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_IN,
   });
 };
 
-// Send token as cookie and response
+// Send token + cookie
 const createSendToken = (user, statusCode, res, message) => {
   const token = signToken(user._id);
 
@@ -27,7 +27,6 @@ const createSendToken = (user, statusCode, res, message) => {
 
   res.cookie("token", token, cookieOptions);
 
-  // Remove sensitive info
   user.password = undefined;
   user.passwordConfirm = undefined;
   user.otp = undefined;
@@ -36,9 +35,7 @@ const createSendToken = (user, statusCode, res, message) => {
     status: "success",
     message,
     token,
-    data: {
-      user,
-    },
+    data: { user },
   });
 };
 
@@ -71,21 +68,21 @@ exports.signup = catchAsync(async (req, res, next) => {
     createSendToken(newUser, 200, res, "Registration successful. OTP sent to email.");
   } catch (error) {
     await User.findByIdAndDelete(newUser._id);
-    return next(new AppError("There was an error sending the email. Try again.", 500));
+    return next(new AppError("Error sending email. Try again.", 500));
   }
 });
 
 // ---------------------- VERIFY ACCOUNT ----------------------
 exports.verifyAccount = catchAsync(async (req, res, next) => {
-  const { otp } = req.body;
+  const { email, otp } = req.body;
 
-  if (!otp) return next(new AppError("OTP is missing", 400));
+  if (!email || !otp) return next(new AppError("Email and OTP required", 400));
 
-  const user = await User.findById(req.user._id);
+  const user = await User.findOne({ email });
   if (!user) return next(new AppError("User not found", 404));
-
+  if (user.isverified) return next(new AppError("User already verified", 400));
   if (user.otp !== otp) return next(new AppError("Invalid OTP", 400));
-  if (user.otpExpires < Date.now()) return next(new AppError("OTP has expired", 400));
+  if (user.otpExpires < Date.now()) return next(new AppError("OTP expired", 400));
 
   user.isverified = true;
   user.otp = undefined;
@@ -100,23 +97,22 @@ exports.verifyAccount = catchAsync(async (req, res, next) => {
 
 // ---------------------- RESEND OTP ----------------------
 exports.resendOTP = catchAsync(async (req, res, next) => {
-  const { email } = req.user;
-  if (!email) return next(new AppError("Email is required for resend OTP", 404));
+  const { email } = req.body;
+  if (!email) return next(new AppError("Email required", 404));
 
   const user = await User.findOne({ email });
   if (!user) return next(new AppError("User not found", 404));
-  if (user.isverified) return next(new AppError("This account is already verified", 400));
+  if (user.isverified) return next(new AppError("Account already verified", 400));
 
   const newOtp = generateOtp();
   user.otp = newOtp;
   user.otpExpires = Date.now() + 24 * 60 * 60 * 1000;
-
   await user.save({ validateBeforeSave: false });
 
   try {
     await sendEmail({
       email: user.email,
-      subject: "Resend OTP for Email Verification",
+      subject: "Resend OTP",
       html: `<h1>Your new OTP is: ${newOtp}</h1>`,
     });
 
@@ -128,14 +124,15 @@ exports.resendOTP = catchAsync(async (req, res, next) => {
     user.otp = undefined;
     user.otpExpires = undefined;
     await user.save({ validateBeforeSave: false });
-    return next(new AppError("There was an error sending the email. Please try again.", 500));
+    return next(new AppError("Error sending email. Please try again.", 500));
   }
 });
+
 
 // ---------------------- LOGIN ----------------------
 exports.login = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
-  if (!email || !password) return next(new AppError("Please provide valid details", 400));
+  if (!email || !password) return next(new AppError("Provide valid details", 400));
 
   const user = await User.findOne({ email }).select("+password");
   if (!user || !(await user.correctPassword(password, user.password))) {
@@ -147,10 +144,11 @@ exports.login = catchAsync(async (req, res, next) => {
 
 // ---------------------- LOGOUT ----------------------
 exports.logout = catchAsync(async (req, res, next) => {
-  res.cookie("token", "logout", {
+  res.cookie("jwt", "logout", {
     expires: new Date(Date.now() + 10 * 1000),
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
+    sameSite: "Lax",
   });
 
   res.status(200).json({
@@ -158,6 +156,7 @@ exports.logout = catchAsync(async (req, res, next) => {
     message: "Logged out successfully",
   });
 });
+
 
 // ---------------------- FORGOT PASSWORD ----------------------
 exports.forgotPassword = catchAsync(async (req, res, next) => {
@@ -174,8 +173,8 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
   try {
     await sendEmail({
       email: user.email,
-      subject: "Your password reset OTP (valid for 5 minutes)",
-      html: `<h1>Your OTP: ${otp}</h1>`,
+      subject: "Password reset OTP",
+      html: `<h1>Your OTP: ${otp}</h1><p>It is valid for 5 minutes</p>`,
     });
 
     res.status(200).json({
@@ -186,7 +185,7 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
     user.resetPasswordOTP = undefined;
     user.resetPasswordOTPExpires = undefined;
     await user.save({ validateBeforeSave: false });
-    return next(new AppError("Error sending OTP. Please try again.", 500));
+    return next(new AppError("Error sending OTP. Try again.", 500));
   }
 });
 

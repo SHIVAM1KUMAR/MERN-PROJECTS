@@ -23,6 +23,7 @@ router.post("/verify", isAuthenticated, verifyAccount);
 router.post("/resend-otp", isAuthenticated, resendOTP);
 
 // User login route
+
 router.post("/login", login);
 
 // Logout route
