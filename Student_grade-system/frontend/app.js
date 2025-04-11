@@ -1,76 +1,67 @@
-const api = "http://localhost:5000/api/students";
+const students = [];
 
-document.getElementById("addStudentForm").addEventListener("submit", async (e) => {
+document.getElementById("addStudentForm").addEventListener("submit", function (e) {
   e.preventDefault();
 
-  const student = {
-    name: document.getElementById("name").value,
-    rollNumber: parseInt(document.getElementById("rollNumber").value),
-    grades: {
-      hindi: parseFloat(document.getElementById("hindi").value),
-      english: parseFloat(document.getElementById("english").value),
-      math: parseFloat(document.getElementById("math").value),
-      science: parseFloat(document.getElementById("science").value),
-      sst: parseFloat(document.getElementById("sst").value)
-    }
-  };
+  const name = document.getElementById("name").value.trim();
+  const rollNumber = parseInt(document.getElementById("rollNumber").value);
+  const marks = [
+    parseFloat(document.getElementById("hindi").value),
+    parseFloat(document.getElementById("english").value),
+    parseFloat(document.getElementById("math").value),
+    parseFloat(document.getElementById("science").value),
+    parseFloat(document.getElementById("sst").value)
+  ];
 
-  const res = await fetch(`${api}/add`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(student)
-  });
+  const average = marks.reduce((a, b) => a + b, 0) / marks.length;
+  const result = average >= 50 ? "Passed" : "Failed";
 
-  const data = await res.json();
-  alert(`${student.name} added! Average: ${data.average}, Result: ${data.result}`);
+  students.push({ name, rollNumber, marks, average: average.toFixed(2), result });
+
+  alert(`Student ${name} added successfully!`);
   e.target.reset();
 });
 
-async function searchStudent() {
-  const name = document.getElementById("searchName").value;
-  const res = await fetch(`${api}/result/${name}`);
-  const resultDiv = document.getElementById("searchResult");
+function searchStudent() {
+  const name = document.getElementById("searchName").value.trim().toLowerCase();
+  const student = students.find(s => s.name.toLowerCase() === name);
 
-  if (res.ok) {
-    const data = await res.json();
-
-    // Safety check if grades exist
-    if (!data.grades) {
-      resultDiv.innerText = "Student data incomplete.";
-      return;
-    }
-
-    resultDiv.innerHTML = `
-      <strong>Name:</strong> ${data.name}<br/>
-      <strong>Roll Number:</strong> ${data.rollNumber}<br/>
-      <strong>Subject Marks:</strong><br/>
-      Hindi: ${data.grades.hindi}<br/>
-      English: ${data.grades.english}<br/>
-      Math: ${data.grades.math}<br/>
-      Science: ${data.grades.science}<br/>
-      SST: ${data.grades.sst}<br/>
-      <strong>Average:</strong> ${data.average}<br/>
-      <strong>Result:</strong> ${data.result}
+  const resultBox = document.getElementById("searchResult");
+  if (student) {
+    resultBox.innerHTML = `
+      <strong>Name:</strong> ${student.name} <br/>
+      <strong>Roll No:</strong> ${student.rollNumber} <br/>
+      <strong>Average:</strong> ${student.average} <br/>
+      <strong>Result:</strong> ${student.result}
     `;
   } else {
-    resultDiv.innerText = "Student not found.";
+    resultBox.innerHTML = "❌ Student not found.";
   }
 }
 
-async function removeStudent() {
-  const roll = document.getElementById("removeRoll").value;
-  const res = await fetch(`${api}/remove/${roll}`, { method: "DELETE" });
-  const data = await res.json();
-  document.getElementById("removeResult").innerText = data.message;
-}
+function removeStudent() {
+  const roll = parseInt(document.getElementById("removeRoll").value);
+  const index = students.findIndex(s => s.rollNumber === roll);
 
-async function getTopper() {
-  const res = await fetch(`${api}/highest`);
-  const data = await res.json();
-
-  if (res.ok) {
-    document.getElementById("topperResult").innerText = `Topper: ${data.name} (Avg: ${data.average})`;
+  const resultBox = document.getElementById("removeResult");
+  if (index !== -1) {
+    const removed = students.splice(index, 1);
+    resultBox.innerHTML = `✅ Removed ${removed[0].name} (Roll No: ${removed[0].rollNumber})`;
   } else {
-    document.getElementById("topperResult").innerText = data.message;
+    resultBox.innerHTML = "❌ Student not found.";
   }
+}
+
+function getTopper() {
+  if (students.length === 0) {
+    document.getElementById("topperResult").innerText = "No students available.";
+    return;
+  }
+
+  const topper = students.reduce((top, curr) => (parseFloat(curr.average) > parseFloat(top.average) ? curr : top));
+  document.getElementById("topperResult").innerHTML = `
+    🏅 <strong>Topper:</strong> ${topper.name}<br/>
+    🎯 <strong>Average:</strong> ${topper.average}<br/>
+    📘 <strong>Result:</strong> ${topper.result}
+  `;
 }
